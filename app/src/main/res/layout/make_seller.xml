@@ -12,72 +12,84 @@
         android:layout_margin="10dp"
         android:orientation="vertical">
 
-
-
-
-
-
-        <RelativeLayout
+        <LinearLayout
             android:id="@+id/rl3"
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:orientation="vertical"
             android:layout_margin="10dp">
-            <EditText
-                android:id="@+id/editFirstName"
+
+            <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:hint="Fill your name"
+                android:text="Seller Name"
+                style="?android:attr/textAppearanceLarge"
+                />
+            <EditText
+                android:id="@+id/editSellerName"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:hint="Fill your seller name"
                 android:textSize="18dp" />
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Seller Address"
+                style="?android:attr/textAppearanceLarge"
+                />
 
             <EditText
-                android:id="@+id/editSurName"
-                android:layout_below="@+id/editFirstName"
+                android:id="@+id/editSellerAddress"
+                android:layout_below="@+id/editSellerName"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
-                android:hint="Fill your sur name (optional)" />
-            <EditText
-                android:id="@+id/editEmail"
-                android:layout_below="@+id/editSurName"
+                android:hint="Fill your seller Address" />
+            <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:hint="Fill your email" />
+                android:text="Seller City"
+                style="?android:attr/textAppearanceLarge"
+                />
 
             <EditText
-                android:id="@+id/editOccupation"
+                android:id="@+id/editSellerCity"
+                android:layout_below="@+id/editSellerAddress"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
-                android:layout_below="@+id/editEmail"
-                android:hint="Fill your occupation" />
-
-            <Button
-                android:id="@+id/editDateOfBirth"
+                android:hint="Fill your seller city" />
+            <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/editOccupation"
-                android:layout_marginBottom="10dp"
-                android:background="@android:color/transparent"
-                android:gravity="left|center"
-                android:paddingLeft="10dp"
-                android:text="Born on "
-                android:textColor="@color/button_material_dark" />
+                android:text="Seller Pin"
+                style="?android:attr/textAppearanceLarge"
+                />
 
             <EditText
-
-                android:id="@+id/editDescription"
+                android:id="@+id/editSellerPin"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_below="@+id/editDateOfBirth"
-                android:ems="10"
-                android:hint="Fill your biography here, Specially interests, hobbies, interests and all  matter of which you are proud upon ... (optional)"
-                android:inputType="textMultiLine" />
-        </RelativeLayout>
+                android:layout_below="@+id/editSellerCity"
+                android:hint="Fill your seller pin" />
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Seller Tag"
+                style="?android:attr/textAppearanceLarge"
+                />
+
+            <EditText
+                android:id="@+id/editSellerTag"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_below="@+id/editSellerPin"
+                android:hint="Fill your seller tag" />
+
+
+        </LinearLayout>
 
         <Button
             android:id="@+id/saveButton"
@@ -88,7 +100,7 @@
             android:layout_centerInParent="true"
             android:layout_marginBottom="10dp"
             android:background="@android:color/transparent"
-            android:text="Save Profile"
+            android:text="Save Seller"
             android:textColor="@color/button_material_dark" />
     </RelativeLayout>
 </ScrollView>

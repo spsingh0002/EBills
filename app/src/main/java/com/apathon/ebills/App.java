@@ -3,10 +3,11 @@ package com.apathon.ebills;
 import android.app.Application;
 import android.content.Context;
 
+import com.apathon.ebills.db.DataBaseHelper;
+
 import java.io.IOException;
 import java.sql.SQLException;
 
-import electronics.payu.com.electronics.db.DataBaseHelper;
 
 /**
  * Created by suraj on 12/2/2014.
