@@ -485,6 +485,23 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     }
 
 
+    public  Cursor search(String query){return searchItem(new String[]{Column_tag_name},query);
+    }
+
+
+    public Cursor searchItem(String []key, String query) {
+        String[] projection = {Column_tag_name};
+
+        String selection = "";
+        String[] selectionArgs=new String[key.length];
+        for (int i = 0; i < key.length; i++) {
+            selectionArgs[i]=query+"*";
+            selection=selection+"  MATCH ? "+((i<key.length-1)?" OR ":"");
+        }
+
+        return getReadableDatabase().query(Table_tags, projection, selection, selectionArgs, null, null, null);
+    }
+
     /**
      *
      * @param _id unique id of seller

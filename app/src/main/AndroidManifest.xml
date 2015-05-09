@@ -24,6 +24,9 @@
         <activity android:name=".screens.MakeSellerActivity"/>
         <activity android:name=".screens.MakeItemActivity"/>
         <activity android:name=".screens.BrowseActivity"/>
+        <activity android:name=".screens.SearchActivity">
+
+        </activity>
     </application>
 
 </manifest>

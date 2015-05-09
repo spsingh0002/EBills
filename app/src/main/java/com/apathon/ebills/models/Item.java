@@ -4,7 +4,6 @@ package com.apathon.ebills.models;
  * Created by pranavsharma on 09/05/15.
  */
 public class Item {
-
     public  String Column__id = "_id";
     public  String Column_item_name = "item_name";
     public  String Column_item_desc = "item_desc";
@@ -12,6 +11,10 @@ public class Item {
     public  String Column_order_no = "order_no";
     public  String Column_invoice_no = "invoice_no";
     public  String Column_item_tag = "item_tag";
+    public  String Column_warranty = "warranty";
+    public  String Column_item_seller_id = "item_seller_id";
+    public  String Column_bill_pic_id = "bill_pic_id";
+
 
     public String getColumn__id() {
         return Column__id;
@@ -93,7 +96,5 @@ public class Item {
         Column_bill_pic_id = column_bill_pic_id;
     }
 
-    public  String Column_warranty = "warranty";
-    public  String Column_item_seller_id = "item_seller_id";
-    public  String Column_bill_pic_id = "bill_pic_id";
+
 }
