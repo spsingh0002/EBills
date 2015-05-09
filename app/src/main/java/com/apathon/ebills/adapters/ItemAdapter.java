@@ -20,10 +20,7 @@ public class ItemAdapter extends BaseAdapter {
     private Context context;
     private LayoutInflater layoutInflater;
 
-    public ItemAdapter(Context context) {
-        this.context = context;
-        this.layoutInflater = LayoutInflater.from(context);
-    }
+
     public ItemAdapter(Context context,List<Item> objects) {
         this.context = context;
         this.layoutInflater = LayoutInflater.from(context);
@@ -50,19 +47,22 @@ public class ItemAdapter extends BaseAdapter {
         if (convertView == null) {
             convertView = layoutInflater.inflate(R.layout.layout_item_row, null);
             ViewHolder viewHolder = new ViewHolder();
-            viewHolder.item = (TextView) convertView.findViewById(R.id.item);
+            viewHolder.textView1 = (TextView) convertView.findViewById(R.id.textView1);
+            viewHolder.textView2 = (TextView) convertView.findViewById(R.id.textView2);
 
             convertView.setTag(viewHolder);
         }
+
         initializeViews(getItem(position), (ViewHolder) convertView.getTag());
         return convertView;
     }
 
     private void initializeViews(Item object, ViewHolder holder) {
-        //TODO implement
+        holder.textView1.setText(object.getColumn_item_name());
+        holder.textView2.setText(object.getColumn_item_tag());
     }
 
     protected class ViewHolder {
-        private TextView item;
+        private TextView textView1, textView2;
     }
 }

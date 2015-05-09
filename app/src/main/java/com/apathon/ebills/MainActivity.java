@@ -8,25 +8,24 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import com.apathon.ebills.screens.BrowseActivity;
 import com.apathon.ebills.screens.MakeSellerActivity;
 
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends ActionBarActivity implements View.OnClickListener {
 
-    Button buttonGo_Sellers;
+    Button btnBrowse_Bills, btnSearch_Bills ,btnAdd_Bills;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        buttonGo_Sellers = (Button)findViewById(R.id.Go_Sellers);
-        buttonGo_Sellers.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), MakeSellerActivity.class);
-                startActivity(intent);
-            }
-        });
+        btnBrowse_Bills = (Button)findViewById(R.id.btnBrowse_Bills);
+        btnSearch_Bills = (Button)findViewById(R.id.btnSearch_Bills);
+        btnAdd_Bills = (Button)findViewById(R.id.btnAdd_Bills);
+        btnBrowse_Bills.setOnClickListener(this);
+        btnSearch_Bills.setOnClickListener(this);
+        btnAdd_Bills.setOnClickListener(this);
 
     }
 
@@ -51,5 +50,26 @@ public class MainActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onClick(View v) {
+        Intent intent;
+        switch (v.getId())
+        {
+            case R.id.btnAdd_Bills:
+                intent = new Intent(getApplicationContext(), MakeSellerActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.btnBrowse_Bills:
+                intent = new Intent(getApplicationContext(), BrowseActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.btnSearch_Bills:
+
+                break;
+
+        }
+
     }
 }

@@ -22,6 +22,8 @@
             android:label="@string/title_activity_home" >
         </activity>
         <activity android:name=".screens.MakeSellerActivity"/>
+        <activity android:name=".screens.MakeItemActivity"/>
+        <activity android:name=".screens.BrowseActivity"/>
     </application>
 
 </manifest>
