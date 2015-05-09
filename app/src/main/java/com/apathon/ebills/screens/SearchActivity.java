@@ -1,14 +1,11 @@
 package com.apathon.ebills.screens;
 
+import android.app.Activity;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.support.v4.widget.SimpleCursorAdapter;
-import android.support.v7.app.ActionBarActivity;
-import android.support.v7.widget.SearchView;
-import android.support.v7.widget.SearchView.OnQueryTextListener;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
+import android.widget.SearchView;
+import android.widget.SearchView.OnQueryTextListener;
+import android.widget.SimpleCursorAdapter;
 
 import com.apathon.ebills.App;
 import com.apathon.ebills.R;
@@ -17,21 +14,17 @@ import com.apathon.ebills.adapters.SearchSuggestionAdapter;
 /**
  * Created by Suraj on 09-05-2015.
  */
-public class SearchActivity extends ActionBarActivity {
+public class SearchActivity extends Activity{
     private SimpleCursorAdapter mSuggestionAdapter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+        super.onCreate(savedInstanceState);setContentView(R.layout.layout_search);
+
         Cursor cursor = App.getDb().search("");
         mSuggestionAdapter =new SearchSuggestionAdapter(this,cursor);
-    }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_search, menu);
-        final SearchView searchView = (SearchView) menu.findItem(R.id.action_search).getActionView();
+        SearchView searchView= (SearchView) findViewById(R.id.search);
         searchView.setIconifiedByDefault(false);
         searchView.setSuggestionsAdapter(mSuggestionAdapter);
         searchView.setOnQueryTextListener(new OnQueryTextListener() {
@@ -47,23 +40,12 @@ public class SearchActivity extends ActionBarActivity {
                 mSuggestionAdapter.notifyDataSetChanged();
                 return false;
             }
-         });
-        return true;
+        });
     }
+
 
     private void onSearch(String query) {
 
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.action_search:
-                onSearchRequested();
-                return true;
-            default:
-                return false;
-        }
     }
 
 }

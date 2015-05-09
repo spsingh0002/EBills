@@ -2,8 +2,8 @@ package com.apathon.ebills.adapters;
 
 import android.content.Context;
 import android.database.Cursor;
-import android.support.v4.widget.SimpleCursorAdapter;
 import android.widget.FilterQueryProvider;
+import android.widget.SimpleCursorAdapter;
 
 import com.apathon.ebills.App;
 import com.apathon.ebills.R;
