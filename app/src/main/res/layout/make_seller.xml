@@ -82,20 +82,7 @@
                 android:layout_marginBottom="10dp"
                 android:layout_below="@+id/editSellerCity"
                 android:hint="Fill your seller pin" />
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="Seller Tag"
-                style="?android:attr/textAppearanceLarge"
-                />
 
-            <EditText
-                android:id="@+id/editSellerTag"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:layout_below="@+id/editSellerPin"
-                android:hint="Fill your seller tag" />
 
 
         </LinearLayout>
@@ -108,7 +95,6 @@
             android:layout_below="@id/rl3"
             android:layout_centerInParent="true"
             android:layout_marginBottom="10dp"
-            android:background="@android:color/transparent"
             android:text="Save Seller"
             android:textColor="@color/button_material_dark" />
     </RelativeLayout>

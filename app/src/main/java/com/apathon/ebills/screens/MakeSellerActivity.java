@@ -44,10 +44,6 @@ public class MakeSellerActivity extends Activity implements View.OnClickListener
         return (EditText) findViewById(R.id.editSellerPin);
     }
 
-    private EditText getEditSellerTag(){
-        return (EditText) findViewById(R.id.editSellerTag);
-    }
-    @Override
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.saveButton:
@@ -56,7 +52,6 @@ public class MakeSellerActivity extends Activity implements View.OnClickListener
                 seller.setColumn_seller_address(getEditSellerAddress().getText().toString());
                 seller.setColumn_seller_city(getEditSellerCity().getText().toString());
                 seller.setColumn_seller_pin(getEditSellerPin().getText().toString());
-                seller.setColumn_seller_tag(getEditSellerTag().getText().toString());
                 long l = App.getDb().insertSeller(seller);
                 if (l!=-1)
                 {

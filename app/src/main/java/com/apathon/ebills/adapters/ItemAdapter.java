@@ -56,8 +56,8 @@ public class ItemAdapter extends BaseAdapter {
     }
 
     private void initializeViews(Item object, ViewHolder holder) {
-        holder.textView1.setText(object.getColumn_item_name());
-        holder.textView2.setText(object.getColumn_item_tag());
+        holder.textView1.setText("Name: " +object.getColumn_item_name());
+        holder.textView2.setText("Tag: " +object.getColumn_item_tag());
     }
 
     protected class ViewHolder {
