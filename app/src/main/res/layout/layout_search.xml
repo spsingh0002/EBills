@@ -6,4 +6,8 @@
     <SearchView
         android:layout_width="match_parent" android:queryHint="Type Any thing to search"
         android:layout_height="wrap_content" android:id="@+id/search"></SearchView>
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" android:id="@+id/list"></ListView>
 </LinearLayout>
