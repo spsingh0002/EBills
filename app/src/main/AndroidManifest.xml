@@ -24,7 +24,7 @@
         <activity android:name=".screens.MakeSellerActivity"/>
         <activity android:name=".screens.MakeItemActivity"/>
         <activity android:name=".screens.BrowseActivity"/>
-        <activity android:name=".screens.SearchActivity">
+        <activity android:name=".screens.SearchActivity" android:theme="@android:style/Theme.DeviceDefault.Light">
 
         </activity>
     </application>
