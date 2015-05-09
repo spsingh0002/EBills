@@ -326,7 +326,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         try {
             ContentValues cv = new ContentValues();
             cv.put(Column_tag_name,item.getColumn_tags_name() );
-            i = db.insert(Table_item, null, cv);
+            i = db.insert(Table_tags, null, cv);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -490,16 +490,8 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
 
     public Cursor searchItem(String []key, String query) {
-        String[] projection = {Column_tag_name};
-
-        String selection = "";
-        String[] selectionArgs=new String[key.length];
-        for (int i = 0; i < key.length; i++) {
-            selectionArgs[i]=query+"*";
-            selection=selection+"  MATCH ? "+((i<key.length-1)?" OR ":"");
-        }
-
-        return getReadableDatabase().query(Table_tags, projection, selection, selectionArgs, null, null, null);
+        String[] projection = {Column__id,Column_tag_name};
+        return getReadableDatabase().query(Table_tags, projection,  "tag_name like ?" , new String[]{"%"+query+"%"}, null, null, null);
     }
 
     /**

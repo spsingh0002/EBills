@@ -3,16 +3,19 @@ package com.apathon.ebills.screens;
 import android.content.Intent;
 import android.os.Bundle;
 import android.app.Activity;
+import android.support.v4.app.FragmentManager;
+import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Button;
 import android.widget.Toast;
 
 import com.apathon.ebills.App;
+import com.apathon.ebills.CreateTagDialog;
 import com.apathon.ebills.R;
 import com.apathon.ebills.models.Item;
 
-public class MakeItemActivity extends Activity implements View.OnClickListener {
+public class MakeItemActivity extends ActionBarActivity implements View.OnClickListener {
 
 
     @Override
@@ -21,6 +24,7 @@ public class MakeItemActivity extends Activity implements View.OnClickListener {
         setContentView(R.layout.layout_insert_item);
 
         findViewById(R.id.submit).setOnClickListener(this);
+        findViewById(R.id.addTag).setOnClickListener(this);
     }
 
     private EditText getName(){
@@ -69,6 +73,12 @@ public class MakeItemActivity extends Activity implements View.OnClickListener {
                     Toast.makeText(getApplicationContext(),"Oops something went wrong!",Toast.LENGTH_SHORT).show();
                 }
                 break;
+            case  R.id.addTag:
+                new  CreateTagDialog().show(getSupportFragmentManager(),CreateTagDialog.class.getName());
+
+
+            break;
+
         }
     }
 }

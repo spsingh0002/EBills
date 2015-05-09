@@ -10,6 +10,7 @@ import android.widget.Button;
 
 import com.apathon.ebills.screens.BrowseActivity;
 import com.apathon.ebills.screens.MakeSellerActivity;
+import com.apathon.ebills.screens.SearchActivity;
 
 
 public class MainActivity extends ActionBarActivity implements View.OnClickListener {
@@ -64,6 +65,8 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
                 startActivity(intent);
                 break;
             case R.id.btnSearch_Bills:
+                intent = new Intent(getApplicationContext(), SearchActivity.class);
+                startActivity(intent);
 
                 break;
 
