@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/rl1"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_gravity="center"
+        android:layout_margin="10dp"
+        android:orientation="vertical">
+
+
+
+
+
+
+        <RelativeLayout
+            android:id="@+id/rl3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp">
+            <EditText
+                android:id="@+id/editFirstName"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:hint="Fill your name"
+                android:textSize="18dp" />
+
+            <EditText
+                android:id="@+id/editSurName"
+                android:layout_below="@+id/editFirstName"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:hint="Fill your sur name (optional)" />
+            <EditText
+                android:id="@+id/editEmail"
+                android:layout_below="@+id/editSurName"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:hint="Fill your email" />
+
+            <EditText
+                android:id="@+id/editOccupation"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_below="@+id/editEmail"
+                android:hint="Fill your occupation" />
+
+            <Button
+                android:id="@+id/editDateOfBirth"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/editOccupation"
+                android:layout_marginBottom="10dp"
+                android:background="@android:color/transparent"
+                android:gravity="left|center"
+                android:paddingLeft="10dp"
+                android:text="Born on "
+                android:textColor="@color/button_material_dark" />
+
+            <EditText
+
+                android:id="@+id/editDescription"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/editDateOfBirth"
+                android:ems="10"
+                android:hint="Fill your biography here, Specially interests, hobbies, interests and all  matter of which you are proud upon ... (optional)"
+                android:inputType="textMultiLine" />
+        </RelativeLayout>
+
+        <Button
+            android:id="@+id/saveButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="15dp"
+            android:layout_below="@id/rl3"
+            android:layout_centerInParent="true"
+            android:layout_marginBottom="10dp"
+            android:background="@android:color/transparent"
+            android:text="Save Profile"
+            android:textColor="@color/button_material_dark" />
+    </RelativeLayout>
+</ScrollView>
