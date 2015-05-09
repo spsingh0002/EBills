@@ -12,7 +12,11 @@ import android.widget.Toast;
 import com.apathon.ebills.App;
 import com.apathon.ebills.R;
 import com.apathon.ebills.db.DataBaseHelper;
+import com.apathon.ebills.models.Bill_Pic;
+import com.apathon.ebills.models.Item;
 import com.apathon.ebills.models.Seller;
+
+import java.util.ArrayList;
 
 public class MakeSellerActivity extends Activity implements View.OnClickListener {
 
@@ -62,6 +66,10 @@ public class MakeSellerActivity extends Activity implements View.OnClickListener
                 if (l!=-1)
                 {
                     Toast.makeText(getApplicationContext(),"Seller Inserted successfully.",Toast.LENGTH_SHORT).show();
+                }
+                else
+                {
+                    Toast.makeText(getApplicationContext(),"Oops something went wrong!",Toast.LENGTH_SHORT).show();
                 }
 
                 //TODO implement

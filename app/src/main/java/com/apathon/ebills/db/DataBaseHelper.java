@@ -22,7 +22,7 @@ import java.util.ArrayList;
 public class DataBaseHelper extends SQLiteOpenHelper {
 
     //The Android's default system path of your application database.
-    private static String DB_PATH = "/data/data/electronics.payu.com.electronics/databases/";
+    private static String DB_PATH = "/data/data/com.apathon.ebills/databases/";
 
     private static String DB_NAME = "store.db";
 
@@ -52,7 +52,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public static final String Column_item_seller_id = "item_seller_id";
     public static final String Column_bill_pic_id = "bill_pic_id";
 
-    public static final String Column_seller = "seller";
+    public static final String Column_seller_name = "seller_name";
     public static final String Column_seller_address = "seller_address";
     public static final String Column_seller_city = "seller_city";
     public static final String Column_seller_state = "seller_state";
@@ -88,6 +88,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
             try {
                 copyDataBase();
+
 
             } catch (IOException e) {
 
@@ -159,7 +160,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
         //Open the database
         String myPath = DB_PATH + DB_NAME;
-        myDataBase = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.OPEN_READONLY);
+        myDataBase = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.OPEN_READWRITE);
 
     }
 
@@ -176,6 +177,12 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
 
+       /* String query="CREATE TABLE \"bill_pic\" (\"_id\" INTEGER PRIMARY KEY  NOT NULL ,\"image_path\" TEXT,\"image_name\" TEXT,\"image_date\" TEXT DEFAULT (null) ,\"image_seller_id\" INTEGER)";
+        db.execSQL(query);
+        String query2 = "CREATE TABLE \"item\" (\"_id\" INTEGER PRIMARY KEY  NOT NULL ,\"item_name\" TEXT,\"item_desc\" TEXT DEFAULT (null) ,\"item_amount\" TEXT DEFAULT (null) ,\"order_no\" TEXT DEFAULT (null) ,\"invoice_no\" TEXT DEFAULT (null) ,\"item_tag\" TEXT DEFAULT (null) ,\"warranty\" INTEGER DEFAULT (null) ,\"item_seller_id\" INTEGER DEFAULT (null) ,\"bill_pic_id\" INTEGER DEFAULT (null) )";
+        db.execSQL(query2);
+        String query3 = "CREATE TABLE \"seller\" (\"seller_name\" TEXT DEFAULT (null) ,\"seller_address\" TEXT,\"seller_city\" TEXT,\"seller_state\" TEXT,\"seller_pin\" TEXT,\"seller_tin\" TEXT,\"seller_tag\" TEXT,\"_id\" INTEGER PRIMARY KEY  NOT NULL )";
+        db.execSQL(query3);*/
     }
 
     @Override
@@ -194,7 +201,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
      * @return all sellers
      */
     public ArrayList<Seller> getAllSellers() {
-        String[] projection = {Column__id, Column_seller, Column_seller_address, Column_seller_city, Column_seller_state, Column_seller_pin, Column_seller_tag};
+        String[] projection = {Column__id, Column_seller_name, Column_seller_address, Column_seller_city, Column_seller_state, Column_seller_pin, Column_seller_tag};
         Cursor cursor = null;
         ArrayList<Seller> sellers = new ArrayList<>();
         try {
@@ -203,7 +210,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
             do {
                 Seller seller = new Seller();
                 seller.setColumn__id(cursor.getString(cursor.getColumnIndex(Column__id)));
-                seller.setColumn_seller(cursor.getString(cursor.getColumnIndex(Column_seller)));
+                seller.setColumn_seller(cursor.getString(cursor.getColumnIndex(Column_seller_name)));
                 seller.setColumn_seller_address(cursor.getString(cursor.getColumnIndex(Column_seller_address)));
                 seller.setColumn_seller_city(cursor.getString(cursor.getColumnIndex(Column_seller_city)));
                 seller.setColumn_seller_state(cursor.getString(cursor.getColumnIndex(Column_seller_state)));
@@ -268,7 +275,6 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                 quote.setColumn_image_path(cursor.getString(cursor.getColumnIndex(Column_image_path)));
                 quote.setColumn_image_name(cursor.getString(cursor.getColumnIndex(Column_image_name)));
                 quote.setColumn_image_date(cursor.getString(cursor.getColumnIndex(Column_image_date)));
-                quote.setColumn_image_seller_id(cursor.getString(cursor.getColumnIndex(Column_image_seller_id)));
                 quotes.add(quote);
             } while (cursor.moveToNext());
         } catch (Exception e) {
@@ -290,13 +296,13 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         long i = -1;
         try {
             ContentValues cv = new ContentValues();
-            cv.put(item.getColumn_item_name(), Column_item_name);
-            cv.put(item.getColumn_item_amount(), Column_item_amount);
-            cv.put(item.getColumn_order_no(),Column_order_no);
-            cv.put(item.getColumn_order_no(),Column_invoice_no);
-            cv.put(item.getColumn_order_no(),Column_item_tag);
-            cv.put(item.getColumn_order_no(),Column_warranty);
-            cv.put(item.getColumn_order_no(),Column_item_seller_id);
+            cv.put(Column_item_name,item.getColumn_item_name() );
+            cv.put(Column_item_amount,item.getColumn_item_amount());
+            cv.put(Column_order_no,item.getColumn_order_no());
+            cv.put(Column_invoice_no,item.getColumn_order_no());
+            cv.put(Column_item_tag,item.getColumn_order_no());
+            cv.put(Column_warranty,item.getColumn_order_no());
+            cv.put(Column_item_seller_id,item.getColumn_order_no());
             i = db.insert(Table_item, null, cv);
         } catch (Exception e) {
             e.printStackTrace();
@@ -318,12 +324,12 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         long i = -1;
         try {
             ContentValues cv = new ContentValues();
-            cv.put(seller.getColumn_seller(), Column_seller);
-            cv.put(seller.getColumn_seller_address(), Column_seller_address);
-            cv.put(seller.getColumn_seller_city(),Column_seller_city);
-            cv.put(seller.getColumn_seller_state(),Column_seller_state);
-            cv.put(seller.getColumn_seller_pin(),Column_seller_pin);
-            cv.put(seller.getColumn_seller_tag(),Column_seller_tag);
+            cv.put(Column_seller_name,seller.getColumn_seller() );
+            cv.put(Column_seller_address,seller.getColumn_seller_address());
+            cv.put(Column_seller_city,seller.getColumn_seller_city());
+            cv.put(Column_seller_state,seller.getColumn_seller_state());
+            cv.put(Column_seller_pin,seller.getColumn_seller_pin());
+            cv.put(Column_seller_tag,seller.getColumn_seller_tag());
             i = db.insert(Table_seller, null, cv);
         } catch (Exception e) {
             e.printStackTrace();
@@ -342,7 +348,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
      * @return List of Sellers depending on params
      */
     public ArrayList<Seller> searchSeller(String column_value, String column_KEY) {
-        String[] projection = {Column__id, Column_seller, Column_seller_address, Column_seller_city, Column_seller_state, Column_seller_pin, Column_seller_tag};
+        String[] projection = {Column__id, Column_seller_name, Column_seller_address, Column_seller_city, Column_seller_state, Column_seller_pin, Column_seller_tag};
 
         Cursor cursor = null;
         ArrayList<Seller> sellers = new ArrayList<>();
@@ -353,7 +359,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
             do {
                 seller = new Seller();
                 seller.setColumn__id(cursor.getString(cursor.getColumnIndex(Column__id)));
-                seller.setColumn_seller(cursor.getString(cursor.getColumnIndex(Column_seller)));
+                seller.setColumn_seller(cursor.getString(cursor.getColumnIndex(Column_seller_name)));
                 seller.setColumn_seller_address(cursor.getString(cursor.getColumnIndex(Column_seller_address)));
                 seller.setColumn_seller_city(cursor.getString(cursor.getColumnIndex(Column_seller_city)));
                 seller.setColumn_seller_state(cursor.getString(cursor.getColumnIndex(Column_seller_state)));
@@ -415,12 +421,12 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         long i = -1;
         try {
             ContentValues cv = new ContentValues();
-            cv.put(seller.getColumn_seller(), Column_seller);
-            cv.put(seller.getColumn_seller_address(), Column_seller_address);
-            cv.put(seller.getColumn_seller_city(),Column_seller_city);
-            cv.put(seller.getColumn_seller_state(),Column_seller_state);
-            cv.put(seller.getColumn_seller_pin(),Column_seller_pin);
-            cv.put(seller.getColumn_seller_tag(),Column_seller_tag);
+            cv.put(Column_seller_name,seller.getColumn_seller() );
+            cv.put(Column_seller_address,seller.getColumn_seller_address());
+            cv.put(Column_seller_city,seller.getColumn_seller_city());
+            cv.put(Column_seller_state,seller.getColumn_seller_state());
+            cv.put(Column_seller_pin,seller.getColumn_seller_pin());
+            cv.put(Column_seller_tag,seller.getColumn_seller_tag());
             i = db.update(Table_seller,cv,Column__id + "=?",new String[]{_id});
         } catch (Exception e) {
             e.printStackTrace();
@@ -442,13 +448,13 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         long i = -1;
         try {
             ContentValues cv = new ContentValues();
-            cv.put(item.getColumn_item_name(), Column_item_name);
-            cv.put(item.getColumn_item_amount(), Column_item_amount);
-            cv.put(item.getColumn_order_no(),Column_order_no);
-            cv.put(item.getColumn_order_no(),Column_invoice_no);
-            cv.put(item.getColumn_order_no(),Column_item_tag);
-            cv.put(item.getColumn_order_no(),Column_warranty);
-            cv.put(item.getColumn_order_no(),Column_item_seller_id);
+            cv.put(Column_item_name,item.getColumn_item_name() );
+            cv.put(Column_item_amount,item.getColumn_item_amount());
+            cv.put(Column_order_no,item.getColumn_order_no());
+            cv.put(Column_invoice_no,item.getColumn_order_no());
+            cv.put(Column_item_tag,item.getColumn_order_no());
+            cv.put(Column_warranty,item.getColumn_order_no());
+            cv.put(Column_item_seller_id,item.getColumn_order_no());
             i = db.update(Table_seller,cv,Column__id + "=?",new String[]{_id});
         } catch (Exception e) {
             e.printStackTrace();

@@ -8,7 +8,6 @@
         android:id="@+id/rl1"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_gravity="center"
         android:layout_margin="10dp"
         android:orientation="vertical">
 
@@ -18,6 +17,15 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_margin="10dp">
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Enter Seller Details"
+                android:textSize="30dp"
+                android:gravity="center"
+                android:layout_marginBottom="15dp"
+                style="?android:attr/textAppearanceLarge"
+                />
 
             <TextView
                 android:layout_width="fill_parent"
