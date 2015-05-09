@@ -26,7 +26,6 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         btnBrowse_Bills.setOnClickListener(this);
         btnSearch_Bills.setOnClickListener(this);
         btnAdd_Bills.setOnClickListener(this);
-
     }
 
 
@@ -48,7 +47,6 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         if (id == R.id.action_settings) {
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 

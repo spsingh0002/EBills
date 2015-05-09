@@ -49,10 +49,8 @@ public class ItemAdapter extends BaseAdapter {
             ViewHolder viewHolder = new ViewHolder();
             viewHolder.textView1 = (TextView) convertView.findViewById(R.id.textView1);
             viewHolder.textView2 = (TextView) convertView.findViewById(R.id.textView2);
-
             convertView.setTag(viewHolder);
         }
-
         initializeViews(getItem(position), (ViewHolder) convertView.getTag());
         return convertView;
     }

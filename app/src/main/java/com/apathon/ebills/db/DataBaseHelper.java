@@ -10,6 +10,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import com.apathon.ebills.models.Bill_Pic;
 import com.apathon.ebills.models.Item;
 import com.apathon.ebills.models.Seller;
+import com.apathon.ebills.models.Tags;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -35,6 +36,9 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public static final String Table_bill_pic = "bill_pic";
     public static final String Table_item = "item";
     public static final String Table_seller = "seller";
+    public static final String Table_tags  ="tags";
+
+    public static final String Column_tag_name = "tag_name";
 
     public static final String Column__id = "_id";
     public static final String Column_image_path = "image_path";
@@ -195,6 +199,31 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         super.onDowngrade(db, oldVersion, newVersion);
     }
 
+    /**
+     *
+     * @return all tags
+     */
+    public ArrayList<Tags> getAllTags() {
+        String[] projection = {Column__id, Column_tag_name};
+        Cursor cursor = null;
+        ArrayList<Tags> sellers = new ArrayList<>();
+        try {
+            cursor = getReadableDatabase().query(Table_tags, projection, null, null, null, null, null);
+            cursor.moveToFirst();
+            do {
+                Tags seller = new Tags();
+                seller.setColumn__id(cursor.getString(cursor.getColumnIndex(Column__id)));
+                seller.setColumn_tags_name(cursor.getString(cursor.getColumnIndex(Column_tag_name)));
+                sellers.add(seller);
+            } while (cursor.moveToNext());
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            closeCursor(cursor);
+        }
+        return sellers;
+    }
+
 
     /**
      *
@@ -291,6 +320,28 @@ public class DataBaseHelper extends SQLiteOpenHelper {
      * @param item is the prepared object of Seller class
      * @return -1 for error , row count on success
      */
+    public  long insertTags(Tags item) {
+        SQLiteDatabase db = getWritableDatabase();
+        long i = -1;
+        try {
+            ContentValues cv = new ContentValues();
+            cv.put(Column_tag_name,item.getColumn_tags_name() );
+            i = db.insert(Table_item, null, cv);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (db != null)
+                db.close();
+        }
+        return i;
+    }
+
+
+    /**
+     *
+     * @param item is the prepared object of Seller class
+     * @return -1 for error , row count on success
+     */
     public  long insertItem(Item item) {
         SQLiteDatabase db = getWritableDatabase();
         long i = -1;
@@ -340,6 +391,30 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         return i;
     }
 
+
+
+    public ArrayList<Tags> searchTag(String tagValue) {
+        String[] projection = {Column__id, Column_tag_name};
+
+        Cursor cursor = null;
+        ArrayList<Tags> tagsList = new ArrayList<>();
+        Tags tags= null;
+        try {
+            cursor = getReadableDatabase().query(Table_tags, projection, Column_tag_name + "=?", new String[]{tagValue}, null, null, null);
+            cursor.moveToFirst();
+            do {
+                tags = new Tags();
+                tags.setColumn__id(cursor.getString(cursor.getColumnIndex(Column__id)));
+                tags.setColumn_tags_name(cursor.getString(cursor.getColumnIndex(Column_tag_name)));
+                tagsList.add(tags);
+            } while (cursor.moveToNext());
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            closeCursor(cursor);
+        }
+        return tagsList;
+    }
 
     /**
      *

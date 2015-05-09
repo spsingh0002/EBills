@@ -78,6 +78,7 @@
                 android:id="@+id/editSellerPin"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:inputType="number"
                 android:layout_marginBottom="10dp"
                 android:layout_below="@+id/editSellerCity"
                 android:hint="Fill your seller pin" />

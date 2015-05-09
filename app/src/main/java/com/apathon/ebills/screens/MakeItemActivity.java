@@ -1,5 +1,6 @@
 package com.apathon.ebills.screens;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.View;
@@ -60,6 +61,8 @@ public class MakeItemActivity extends Activity implements View.OnClickListener {
                 if (l!=-1)
                 {
                     Toast.makeText(getApplicationContext(), "Item details Inserted successfully.", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(getApplicationContext(),BrowseActivity.class);
+                    startActivity(intent);
                 }
                 else
                 {
